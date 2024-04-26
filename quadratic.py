@@ -1,24 +1,38 @@
 import math
-
 def roots(a, b, c):
-    discriminant = b**2 - 4*a*c
-    if discriminant > 0:
-        root1 = (-b + math.sqrt(discriminant)) / (2*a)
-        root2 = (-b - math.sqrt(discriminant)) / (2*a)
-        return f"({root1}, {root2})"
-    elif discriminant == 0:
-        root = -b / (2*a)
-        return f"({root})"
+    var1 = b**2-4*a*c
+    if var1 < 0:
+        return "( )"
+        
+    raiz = math.sqrt(var1)
+    result1= (-b+raiz)/2*a
+    result2= (-b-raiz)/2*a
+    if result1==result2:
+        return f"({result1})"
     else:
-        return "()"
-
+        return f"({result1}, {result2})"
 def value_y(a, b, c, x):
-    return a * x**2 + b * x + c
+    imagen= a*(x**2) + b*x + c
+    return imagen
 
 def to_string(a, b, c):
-    return f"f(x) = {a} * X^2 + {b} * X + {c}"
+    #a y b y c
+    if a and b and c:
+        return f"f(x) = {a} * X^2 + {b} * X + {c}"
+    #b y c
+    elif b and c:
+        return f"f(x) = {b} * X + {c}"
+    #a y c
+    elif a and c:
+        return f"f(x) = {a} * X^2 + {c}"
+    #c y no a y no b
+    elif not a and not b and c:
+        return f"f(x) = {c}"
 
 def derivation(a, b, c):
-    derivative_a = 2 * a
-    derivative_b = b
-    return f"f'(x) = {derivative_a}x + {derivative_b}"
+    if a and b:
+        return f"f'(x) = {2 * a} * X + {b}"
+    elif not a:
+        return f"f'(x) = {b}"
+    elif not b:
+        return f"f'(x) = {2 * a} * X"
